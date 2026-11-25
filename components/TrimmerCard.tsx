@@ -22,7 +22,7 @@ export function TrimmerCard({ s, headingLevel = "h3", priority }: Props) {
       </div>
       <div className="flex flex-1 flex-col p-6">
         <ConcernChips slugs={s.concerns} />
-        <p className="mt-4 text-[1.1875rem] leading-[1.6] font-extrabold">
+        <p className="phrase mt-4 text-[1.1875rem] leading-[1.6] font-extrabold">
           <span className="-ml-[0.5em]">「</span>
           {s.catchphrase}」
         </p>

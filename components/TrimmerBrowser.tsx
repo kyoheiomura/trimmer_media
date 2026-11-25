@@ -66,7 +66,8 @@ export function TrimmerBrowser({ people, areas }: { people: TrimmerSummary[]; ar
   useEffect(() => {
     setF(fromQuery(new URLSearchParams(window.location.search)));
     // 「さらに条件で絞り込む」から来たら絞り込みを開いておく
-    if (window.location.hash === "#filters" && panel.current) panel.current.open = true;
+    // 広い画面では最初から開いておく。狭い画面では、結果がすぐ見えるように閉じておく
+    if (panel.current && (window.location.hash === "#filters" || window.matchMedia("(min-width: 768px)").matches)) panel.current.open = true;
   }, []);
 
   const update = (next: Filters) => {
@@ -125,10 +126,11 @@ export function TrimmerBrowser({ people, areas }: { people: TrimmerSummary[]; ar
         </span>
       </label>
       <div className="card px-5 py-3 min-[768px]:px-7">
-        <details ref={panel} id="filters" open className="group scroll-mt-24">
+        <details ref={panel} id="filters" className="group scroll-mt-24">
           <summary className="inline-flex min-h-11 cursor-pointer list-none items-center gap-2 px-1 text-[0.9375rem] font-bold [&::-webkit-details-marker]:hidden">
             <SlidersIcon size={18} />
             条件で絞り込む
+            <span aria-hidden="true" className="ml-1 size-2 rotate-[135deg] border-t-2 border-r-2 border-ink transition-transform group-open:-rotate-45" />
             
           </summary>
           <div className="mt-3 grid gap-6 border-t border-line pt-5 min-[768px]:grid-cols-2">

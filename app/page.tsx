@@ -35,10 +35,11 @@ export default function Home() {
   return (
     <>
       <section aria-labelledby="hero-title" className="overflow-x-clip">
-        <div className="container-page grid items-center gap-x-10 gap-y-12 pt-10 pb-14 min-[900px]:grid-cols-12 min-[900px]:pt-16 min-[900px]:pb-20">
-          <div className="min-[900px]:col-span-6">
+        {/* 狭い画面：見出し → 写真 → 説明とボタン（写真を最初の画面に入れる）。広い画面：左に見出しと説明、右に写真 */}
+        <div className="container-page grid gap-x-10 pt-7 pb-14 min-[900px]:grid-cols-12 min-[900px]:grid-rows-[1fr_auto_auto_1fr] min-[900px]:pt-16 min-[900px]:pb-20">
+          <div className="order-1 min-[900px]:order-none min-[900px]:col-span-6 min-[900px]:row-start-2">
             <p className="label pop-in">{SITE.descriptor}</p>
-            <h1 id="hero-title" className="mt-6 text-[clamp(2.125rem,1.1rem+4.2vw,4.25rem)] leading-[1.3] font-extrabold">
+            <h1 id="hero-title" className="mt-4 text-[clamp(2.125rem,1.1rem+4.2vw,4.25rem)] leading-[1.3] font-extrabold min-[900px]:mt-6">
               <span className="pop-in block whitespace-nowrap" style={{ "--i": 1 } as React.CSSProperties}>
                 あずけるのは、
               </span>
@@ -46,11 +47,14 @@ export default function Home() {
                 <span className="marker marker-draw">どんな人</span>だろう。
               </span>
             </h1>
-            <p className="pop-in mt-6 max-w-[30rem] leading-[2.05]" style={{ "--i": 3 } as React.CSSProperties}>
+          </div>
+
+          <div className="order-3 mt-14 min-[900px]:order-none min-[900px]:col-span-6 min-[900px]:row-start-3 min-[900px]:mt-0">
+            <p className="pop-in max-w-[30rem] leading-[2.05] min-[900px]:mt-6" style={{ "--i": 3 } as React.CSSProperties}>
               {SITE.name}
               は、トリマーさん本人に話を聞いたインタビューメディアです。どんな人が、どんな考えで仕事をしているのか。予約する前に、じっくり読めます。
             </p>
-            <div className="pop-in mt-8 flex flex-wrap items-center gap-x-7 gap-y-4" style={{ "--i": 4 } as React.CSSProperties}>
+            <div className="pop-in mt-7 flex flex-wrap items-center gap-x-7 gap-y-4 min-[900px]:mt-8" style={{ "--i": 4 } as React.CSSProperties}>
               <Link href="/trimmer/" className="btn-primary">
                 トリマーさんの話を読む
               </Link>
@@ -60,12 +64,12 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative mx-auto w-full max-w-[30rem] min-[900px]:col-span-6 min-[900px]:max-w-none min-[900px]:pl-6">
+          <div className="relative order-2 mx-auto mt-[4.75rem] w-[86%] max-w-[24rem] self-center min-[900px]:order-none min-[900px]:col-span-6 min-[900px]:col-start-7 min-[900px]:row-span-4 min-[900px]:row-start-1 min-[900px]:mt-0 min-[900px]:w-full min-[900px]:max-w-none min-[900px]:pl-6">
             <div aria-hidden="true" className="pop-scale absolute top-[6%] right-[-4%] h-[92%] w-[92%] rounded-[58%_42%_48%_52%/46%_56%_44%_54%] bg-mint" style={{ "--i": 1 } as React.CSSProperties} />
             <div className="pop-scale relative aspect-square overflow-hidden rounded-[46%_54%_52%_48%/52%_44%_56%_48%] bg-towel" style={{ "--i": 2 } as React.CSSProperties}>
               <Image src={first.photo.src} alt={first.photo.alt} fill priority sizes="(min-width: 900px) 44vw, 90vw" className="object-cover" />
             </div>
-            <Link href={`/trimmer/${first.slug}/`} className="bubble pop-scale absolute -top-4 right-0 block max-w-[15.5rem] px-5 py-4 text-[0.875rem] leading-[1.7] font-bold min-[900px]:-right-4" style={{ "--i": 7 } as React.CSSProperties}>
+            <Link href={`/trimmer/${first.slug}/`} className="bubble phrase pop-scale absolute -top-16 -right-3 block max-w-[14.5rem] px-5 py-3.5 text-[0.8125rem] leading-[1.7] font-bold min-[900px]:-top-4 min-[900px]:-right-4 min-[900px]:max-w-[15.5rem] min-[900px]:py-4 min-[900px]:text-[0.875rem]" style={{ "--i": 7 } as React.CSSProperties}>
               「{first.catchphrase}」
               <span className="mt-1 block text-[0.75rem] font-medium text-sub">{first.name} さん</span>
             </Link>
@@ -78,15 +82,15 @@ export default function Home() {
         </div>
       </section>
 
-      <section aria-labelledby="voices" className="mx-3 rounded-[2.5rem] bg-towel py-14 min-[768px]:mx-6 min-[768px]:py-20">
+      <section aria-labelledby="voices" className="mx-3 overflow-hidden rounded-[2rem] bg-towel py-12 min-[768px]:mx-6 min-[768px]:rounded-[2.5rem] min-[768px]:py-20">
         <div className="container-page">
           <SectionHead id="voices" en="Voices" title="トリマーさんの、ことば" lead="インタビューの途中で、思わず手が止まったひとこと。つづきは記事で読めます。" />
-          <ul className="mt-10 grid gap-x-8 gap-y-12 min-[900px]:grid-cols-3">
+          <ul className="-mx-5 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 [scrollbar-width:none] min-[900px]:mx-0 min-[900px]:mt-10 min-[900px]:grid min-[900px]:grid-cols-3 min-[900px]:gap-8 min-[900px]:overflow-visible min-[900px]:px-0 [&::-webkit-scrollbar]:hidden">
             {cards
               .filter((s) => s.hook)
               .map((s) => (
-                <li key={s.slug} className="reveal reveal-pop flex flex-col">
-                  <p className="bubble flex-1 px-7 py-7 text-[1.0625rem] leading-[1.95] font-bold">「{s.hook}」</p>
+                <li key={s.slug} className="reveal reveal-pop flex w-[84%] shrink-0 snap-center flex-col min-[900px]:w-auto">
+                  <p className="bubble phrase flex-1 px-6 py-6 text-[1rem] leading-[1.9] font-bold min-[900px]:px-7 min-[900px]:py-7 min-[900px]:text-[1.0625rem]">「{s.hook}」</p>
                   <Link href={`/trimmer/${s.slug}/`} className="group mt-6 flex items-center gap-4 pl-3">
                     <span className="relative block size-14 shrink-0 overflow-hidden rounded-full bg-paper">
                       <Image src={s.photo.src} alt="" fill sizes="56px" className="object-cover" />
@@ -99,7 +103,8 @@ export default function Home() {
                 </li>
               ))}
           </ul>
-          <SampleNote className="mt-10 text-center" />
+          <p aria-hidden="true" className="mt-4 text-center text-[0.75rem] font-bold text-sub min-[900px]:hidden">← 横にスワイプできます →</p>
+          <SampleNote className="mt-6 text-center min-[900px]:mt-10" />
         </div>
       </section>
 
@@ -115,7 +120,7 @@ export default function Home() {
         </p>
       </section>
 
-      <section id="concerns" aria-labelledby="concerns-title" className="mx-3 mt-20 scroll-mt-24 rounded-[2.5rem] bg-towel py-14 min-[768px]:mx-6 min-[768px]:mt-28 min-[768px]:py-20">
+      <section id="concerns" aria-labelledby="concerns-title" className="mx-3 mt-20 scroll-mt-24 rounded-[2rem] bg-towel py-12 min-[768px]:mx-6 min-[768px]:rounded-[2.5rem] min-[768px]:mt-28 min-[768px]:py-20">
         <div className="container-page">
           <SectionHead id="concerns-title" en="Find by concern" title="相談からさがす" lead="その相談をよく引き受けているトリマーさんが並びます。数字は、話を聞いた人数です。" />
           <div className="mt-10">
@@ -159,8 +164,8 @@ export default function Home() {
       </section>
 
       <section aria-labelledby="for-trimmers" className="container-page pt-20 min-[768px]:pt-28">
-        <div className="reveal relative overflow-hidden rounded-[2.5rem] bg-mint">
-          <div className="relative grid items-center gap-8 min-[900px]:grid-cols-2">
+        <div className="reveal relative overflow-hidden rounded-[2rem] bg-mint min-[768px]:rounded-[2.5rem]">
+          <div className="relative grid items-center min-[900px]:grid-cols-2 min-[900px]:gap-8">
             <div className="p-8 min-[768px]:p-14">
               <h2 id="for-trimmers" className="text-[clamp(1.625rem,1.2rem+1.8vw,2.5rem)] leading-[1.5] font-extrabold">
                 トリマーさんへ。
@@ -172,7 +177,7 @@ export default function Home() {
                 掲載について読む
               </Link>
             </div>
-            <div className="relative min-h-[15rem] self-stretch min-[900px]:min-h-[22rem]">
+            <div className="relative min-h-[13rem] self-stretch min-[900px]:min-h-[22rem]">
               <Image src="/images/top/talk.jpg" alt="サロンの受付で、小さな犬を抱いた飼い主とトリマーが話している" fill sizes="(min-width: 900px) 40vw, 100vw" className="object-cover min-[900px]:rounded-l-[6rem]" />
             </div>
           </div>

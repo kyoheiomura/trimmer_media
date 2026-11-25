@@ -31,7 +31,7 @@ export function Q({ children }: { children: ReactNode }) {
 }
 
 export function Quote({ children }: { children: ReactNode }) {
-  return <blockquote className="bubble !my-14 clear-both px-7 py-8 text-center text-[1.25rem] leading-[1.8] font-bold min-[768px]:text-[1.5rem]">{children}</blockquote>;
+  return <blockquote className="bubble phrase !my-14 clear-both px-7 py-8 text-center text-[1.25rem] leading-[1.8] font-bold min-[768px]:text-[1.5rem]">{children}</blockquote>;
 }
 
 export function Photo({ src, alt, caption, align = "center" }: { src: string; alt: string; caption?: string; align?: "center" | "left" }) {

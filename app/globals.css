@@ -57,11 +57,29 @@
     text-wrap: pretty;
     word-break: auto-phrase;
   }
+  /* 本文：狭い画面では行の右端までそろえる。広い画面では文節で折り返す */
   p,
   li,
   dd {
-    word-break: auto-phrase;
     overflow-wrap: anywhere;
+    line-break: strict;
+  }
+  @media (min-width: 768px) {
+    p,
+    li,
+    dd {
+      word-break: auto-phrase;
+    }
+  }
+  /* 短い言葉（一言・ふきだし・目次など）は、狭い画面でも文節で折り返す */
+  .phrase {
+    word-break: auto-phrase;
+  }
+  /* overflow-x: clip が使えないブラウザでも、横にはみ出してスクロールしないようにする */
+  @supports not (overflow: clip) {
+    html {
+      overflow-x: hidden;
+    }
   }
   a {
     text-underline-offset: 0.3em;
