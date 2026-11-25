@@ -60,7 +60,7 @@ export default async function TrimmerPage({ params }: Props) {
 
   return (
     <>
-      <section className="mx-3 rounded-[2.5rem] bg-towel min-[768px]:mx-6">
+      <section className="mx-3 rounded-[2rem] bg-towel min-[768px]:mx-6 min-[768px]:rounded-[2.5rem]">
         <Breadcrumbs
           items={[
             ...(concern ? [{ href: `/concern/${concern.slug}/`, label: concern.label }] : []),
@@ -69,8 +69,8 @@ export default async function TrimmerPage({ params }: Props) {
         />
         <header className="container-page grid items-center gap-x-12 gap-y-8 pt-8 pb-12 min-[900px]:grid-cols-12 min-[900px]:pt-12 min-[900px]:pb-16">
           <div className="relative min-[900px]:col-span-5">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-paper">
-              <Image src={s.photo.src} alt={s.photo.alt} fill priority sizes="(min-width: 900px) 40vw, 100vw" className="object-cover" />
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-paper min-[900px]:aspect-[4/5] min-[900px]:rounded-[2.5rem]">
+              <Image src={s.photo.src} alt={s.photo.alt} fill priority sizes="(min-width: 900px) 40vw, 100vw" className="object-cover object-[50%_30%]" />
             </div>
           </div>
           <div className="min-[900px]:col-span-7">
@@ -107,7 +107,7 @@ export default async function TrimmerPage({ params }: Props) {
               <p id="toc" className="text-[0.8125rem] font-bold text-sub">
                 この記事の目次
               </p>
-              <ol className="mt-4 space-y-2.5">
+              <ol className="phrase mt-4 space-y-2.5 [&_li]:[word-break:inherit]">
                 {chapters.map((c) => (
                   <li key={c.id}>
                     <a href={`#${c.id}`} className="flex items-baseline gap-4 font-bold hover:underline">

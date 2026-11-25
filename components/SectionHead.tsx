@@ -10,7 +10,7 @@ export function SectionHead({ id, en, title, lead }: { id: string; en: string; t
       <h2 id={id} className="section-title mt-4">
         {title}
       </h2>
-      {lead && <p className="mt-3 text-[0.9375rem] leading-[1.9] text-sub">{lead}</p>}
+      {lead && <p className="phrase mt-3 text-[0.9375rem] leading-[1.9] text-sub">{lead}</p>}
     </div>
   );
 }

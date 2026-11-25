@@ -7,12 +7,12 @@ import { SITE } from "@/data/site";
 export function Logo({ size = "md" }: { size?: "md" | "lg" }) {
   return (
     <span aria-hidden="true" className="inline-flex items-center gap-2">
-      <StepsMark className={size === "lg" ? "h-10 w-12" : "h-8 w-10"} />
+      <StepsMark className={size === "lg" ? "h-10 w-12" : "h-7 w-9 min-[400px]:h-8 min-[400px]:w-10"} />
       <span className="flex flex-col leading-none">
-        <span className={`font-extrabold tracking-[-0.01em] ${size === "lg" ? "text-[2rem]" : "text-[1.5rem]"}`}>{SITE.nameEn}</span>
+        <span className={`font-extrabold tracking-[-0.01em] ${size === "lg" ? "text-[2rem]" : "text-[1.3125rem] min-[400px]:text-[1.5rem]"}`}>{SITE.nameEn}</span>
         <span className="mt-1 text-[0.5625rem] font-bold tracking-[0.42em] text-sub">{SITE.kana}</span>
       </span>
-      <ScissorsMark className={size === "lg" ? "size-9" : "size-7"} />
+      <ScissorsMark className={size === "lg" ? "size-9" : "hidden size-7 min-[400px]:block"} />
     </span>
   );
 }
