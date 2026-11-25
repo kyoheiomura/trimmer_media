@@ -1,0 +1,24 @@
+# content/salon/<slug>.yaml にコピーして使う。slug はファイル名と同じにする
+slug: sample-salon
+name: サロンの名前
+nameKana: さろんのなまえ
+kind: トリミングサロン # トリミングサロン／自宅サロン／動物病院併設／ペットホテル併設／出張・訪問／その他
+address:
+  prefSlug: tokyo # data/areas.ts にある値だけ
+  citySlug: setagaya
+  line: 町名と番地
+  building: 建物名（なければ行ごと消す）
+stations:
+  - line: 路線名
+    name: 駅名（「駅」は付けない）
+    walkMin: 5
+hours:
+  - days: [月, 火, 水, 木, 金]
+    open: "10:00"
+    close: "19:00"
+hoursNote: 定休日や予約の決まり（なければ行ごと消す）
+booking: # 電話・公式サイト・LINE のうち1つ以上
+  phone: 03-0000-0000
+  url: https://example.com/
+features: [完全予約制] # data/vocab.ts の FEATURES から選ぶ
+verifiedAt: 2026-01-01 # 情報を確認した日。半年たつと検査で知らせる

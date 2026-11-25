@@ -1,0 +1,444 @@
+@import "tailwindcss";
+
+/*
+ * デザインの決まり（tocotoco）
+ * - トーンは「かわいくて、すっきり」。あたたかい白の地に、黒い文字とミントの面。差し色は黄色（しるしとマーカー）。
+ * - 主役は犬とトリマーの写真と、トリマー本人の言葉。言葉はふきだしで見せる。
+ * - 書体は LINE Seed JP ひとつ。見出しとロゴは太く（800）、本文は 400。字間は広げすぎない。
+ * - 形：カードと写真は大きめの角丸、ボタンとしるしは丸い端。色の面は、角の丸い大きなブロックで置く。影は使わない。
+ * - 押すものは黒（ボタン）。ミントは面と線、黄色はしるし。文字に色は付けない（リンクの下線だけミント）。
+ * - 遊び：トップの「なでてみる」の毛並み（components/CoatPlay.tsx）。コームが通るように毛がととのい、なでると流れる。
+ * - 動き：要素が画面に入るときにふわっと現れる（.reveal）／カードのホバー。prefers-reduced-motion では止める。
+ */
+@theme {
+  --color-paper: #ffffff;
+  --color-foam: #f6f3ec; /* あたたかい白：ページの地 */
+  --color-towel: #d9f3ec; /* うすいミントの面 */
+  --color-ink: #1c1c1a;
+  --color-sub: #66635d; /* 地の上で 5.4:1 */
+  --color-line: #e4dfd3;
+  --color-mint: #6fd3c1; /* ミント：面と線 */
+  --color-accent: #1c1c1a; /* 押すものは黒 */
+  --color-accent-deep: #1c1c1a;
+  --color-accent-soft: #d9f3ec;
+  --color-deep: #6fd3c1;
+  --color-yellow: #ffe45e;
+  --color-apricot: #e8b27a;
+
+  --font-sans: var(--font-sans-jp), "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  --font-display: var(--font-sans);
+  --font-latin: var(--font-sans);
+
+  --radius-soft: 1.75rem;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scrollbar-gutter: stable;
+  }
+  body {
+    background: var(--color-foam);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.95;
+    letter-spacing: 0.01em;
+    overflow-x: clip;
+  }
+  h1,
+  h2,
+  h3 {
+    font-weight: 800;
+    line-height: 1.5;
+    font-feature-settings: "palt";
+    text-wrap: pretty;
+    word-break: auto-phrase;
+  }
+  p,
+  li,
+  dd {
+    word-break: auto-phrase;
+    overflow-wrap: anywhere;
+  }
+  a {
+    text-underline-offset: 0.3em;
+  }
+  ::selection {
+    background: var(--color-yellow);
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-ink);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .container-page {
+    width: 100%;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-page {
+      padding-inline: 2.5rem;
+    }
+  }
+  .container-text {
+    max-width: 40rem;
+  }
+
+  /* 見出し */
+  .display {
+    font-weight: 800;
+    letter-spacing: 0;
+    font-feature-settings: "palt";
+  }
+  .latin {
+    font-family: var(--font-latin);
+    font-weight: 800;
+    letter-spacing: 0;
+  }
+  /* 小さな欧文の見出し（Interviews など）。飾りなので読み上げない */
+  .label {
+    font-family: var(--font-latin);
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.875rem;
+    border: 1.5px solid var(--color-ink);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+  }
+  .section-title {
+    font-weight: 800;
+    font-size: clamp(1.625rem, 1.2rem + 1.8vw, 2.5rem);
+    line-height: 1.45;
+    letter-spacing: 0;
+  }
+  .num {
+    font-family: var(--font-latin);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0;
+  }
+  /* 黄色のマーカー（見出しの中の言葉に引く） */
+  .marker {
+    background: linear-gradient(transparent 62%, var(--color-yellow) 62%);
+    padding-inline: 0.1em;
+  }
+
+  .link {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: var(--color-mint);
+  }
+  .link:hover {
+    text-decoration-color: var(--color-ink);
+  }
+  /* 「すべてを見る」などの小さなリンク */
+  .link-quiet {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .link-quiet::after {
+    content: "";
+    width: 0.5rem;
+    height: 0.5rem;
+    border-top: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    transform: rotate(45deg);
+    transition: translate 0.3s var(--ease-out);
+  }
+  .link-quiet:hover::after {
+    translate: 0.25rem 0;
+  }
+
+  .btn-primary,
+  .btn-outline,
+  .btn-light,
+  .btn-yellow {
+    display: inline-flex;
+    white-space: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 3.5rem;
+    padding: 0.5rem 2rem;
+    border: 2px solid transparent;
+    border-radius: 999px;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    transition: background-color 0.25s ease, color 0.25s ease, translate 0.25s var(--ease-out);
+  }
+  .btn-primary:hover,
+  .btn-yellow:hover,
+  .btn-light:hover {
+    translate: 0 -2px;
+  }
+  .btn-primary {
+    background: var(--color-accent);
+    color: #fff;
+  }
+  .btn-primary:hover {
+    background: #3a3a37;
+  }
+  .btn-yellow {
+    background: var(--color-yellow);
+    color: var(--color-ink);
+  }
+  .btn-outline {
+    min-height: 3rem;
+    padding-inline: 1.5rem;
+    border-color: var(--color-ink);
+    background: transparent;
+    color: var(--color-ink);
+    font-size: 0.875rem;
+  }
+  .btn-outline:hover {
+    background: var(--color-accent);
+    color: #fff;
+  }
+  .btn-light {
+    background: #fff;
+    color: var(--color-accent-deep);
+  }
+  .card {
+    background: var(--color-paper);
+    border-radius: var(--radius-soft);
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 0.75rem;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.9;
+    white-space: nowrap;
+  }
+  /* 相談のしるし（カード・個別ページ） */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 0.75rem;
+    border-radius: 999px;
+    background: var(--color-towel);
+    color: var(--color-ink);
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 2;
+    white-space: nowrap;
+  }
+  .field {
+    width: 100%;
+    min-height: 3.25rem;
+    border: 2px solid var(--color-line);
+    border-radius: 999px;
+    background: #fff;
+    padding: 0 2.5rem 0 1.25rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-ink);
+  }
+  select.field {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%231c1c1a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1.25rem center;
+  }
+  .field:hover,
+  .field:focus {
+    border-color: var(--color-mint);
+  }
+
+  /* ふきだし。しっぽは左下 */
+  .bubble {
+    position: relative;
+    background: var(--color-paper);
+    border-radius: 1.75rem;
+  }
+  .bubble::after {
+    content: "";
+    position: absolute;
+    left: 2.25rem;
+    bottom: -0.9rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: inherit;
+    clip-path: polygon(0 0, 100% 0, 15% 100%);
+  }
+
+  /* 取材記事の本文 */
+  .interview > * + * {
+    margin-top: 1.25em;
+  }
+  .interview p {
+    line-height: 2.15;
+    word-break: normal;
+    line-break: strict;
+  }
+}
+
+/* 写真：ホバーで少し寄る */
+.photo-zoom {
+  transition: transform 0.8s var(--ease-out);
+}
+.group:hover .photo-zoom {
+  transform: scale(1.04);
+}
+
+/*
+ * 動き。ポップに、はずむように。隠すのは <html class="js"> のときだけ（JS が動かなければ最初から見えている）。
+ * prefers-reduced-motion では、すべて止めて最初から見せる。
+ * - .reveal：スクロールして画面に入ったら、下からぽんっとはずんで現れる（components/RevealObserver.tsx が .is-in を付ける。
+ *   横に並んだものは左から順に少しずつ遅れる）
+ * - .reveal-pop：ふきだしやしるし用。小さく傾いた状態から、ふくらんで現れる
+ * - .reveal-peek：フッターの犬と猫。下からひょっこり顔を出す
+ * - .pop-in / .pop-scale：トップの最初の画面。読み込み時に、--i の順にはずんで現れる
+ * - .marker-draw：黄色のマーカーが左から引かれる
+ * - .sway：小さな飾りがゆっくり揺れる／.step-a .step-b：ロゴの足あとが、歩くように順に出る
+ */
+@keyframes pop-up {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem) scale(0.92);
+  }
+  55% {
+    opacity: 1;
+    transform: translateY(-0.5rem) scale(1.02);
+  }
+  78% {
+    transform: translateY(0.15rem) scale(0.995);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes pop-scale {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-6deg);
+  }
+  55% {
+    opacity: 1;
+    transform: scale(1.07) rotate(1.5deg);
+  }
+  78% {
+    transform: scale(0.98) rotate(-0.5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes peek-up {
+  0% {
+    transform: translateY(85%);
+  }
+  60% {
+    transform: translateY(-5%);
+  }
+  80% {
+    transform: translateY(2%);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes marker-draw {
+  from {
+    background-size: 0% 100%;
+  }
+}
+@keyframes sway {
+  50% {
+    transform: translateY(-6px) rotate(6deg);
+  }
+}
+@keyframes step {
+  0%,
+  8% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  16%,
+  88% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .sway {
+    animation: sway 4s ease-in-out infinite;
+  }
+  .step-a,
+  .step-b {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: step 4.5s ease-out infinite;
+  }
+  .step-b {
+    animation-delay: 0.45s;
+  }
+
+  /* 読み込み時（トップの最初の画面） */
+  .pop-in {
+    animation: pop-up 0.9s cubic-bezier(0.3, 0.7, 0.4, 1) both;
+    animation-delay: calc(0.15s + var(--i, 0) * 0.11s);
+  }
+  .pop-scale {
+    animation: pop-scale 0.9s cubic-bezier(0.3, 0.7, 0.4, 1) both;
+    animation-delay: calc(0.15s + var(--i, 0) * 0.11s);
+  }
+  .marker-draw {
+    background-repeat: no-repeat;
+    animation: marker-draw 0.7s var(--ease-out) both;
+    animation-delay: 1s;
+  }
+
+  /* スクロールで現れる */
+  .js .reveal:not(.is-in) {
+    opacity: 0;
+  }
+  .js .reveal-peek:not(.is-in) {
+    opacity: 1;
+    transform: translateY(85%);
+  }
+  .js .reveal.is-in {
+    animation: pop-up 0.85s cubic-bezier(0.3, 0.7, 0.4, 1) both;
+    animation-delay: var(--stagger, 0ms);
+  }
+  .js .reveal-pop.is-in {
+    animation-name: pop-scale;
+  }
+  .js .reveal-peek.is-in {
+    animation: peek-up 1s cubic-bezier(0.3, 0.7, 0.4, 1) both;
+  }
+}

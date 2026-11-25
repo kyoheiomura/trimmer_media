@@ -1,0 +1,21 @@
+slug: mihon-dog-salon
+name: みほんドッグサロン
+nameKana: みほんどっぐさろん
+kind: 自宅サロン
+address:
+  prefSlug: tokyo
+  citySlug: setagaya
+  line: 三軒茶屋1-2-3（架空）
+stations:
+  - line: 東急田園都市線
+    name: 三軒茶屋
+    walkMin: 7
+hours:
+  - days: [火, 水, 金, 土, 日]
+    open: "09:30"
+    close: "18:00"
+hoursNote: 月・木は休み。完全予約制で、1日に3頭まで
+booking:
+  url: https://example.com/mihon-dog-salon
+features: [完全予約制, 1頭ずつ貸し切り, トリミング室が見える, キャッシュレス対応]
+verifiedAt: 2026-11-04

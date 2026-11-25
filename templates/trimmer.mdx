@@ -1,0 +1,79 @@
+---
+# content/trimmer/<slug>.mdx にコピーして使う。slug はファイル名と同じにする
+slug: sample-name
+name: 名前
+nameKana: なまえ
+photo:
+  src: /images/trimmer/sample-name.jpg # 縦 4:5
+  alt: 写真に何が写っているかを10字以上で
+catchphrase: 本人の言葉から一言（32字まで）
+lead: "記事の冒頭に置く導入文。編集部の言葉で、どんな人・どんなサロンかを紹介する（400字まで）"
+hook: 本文から抜き出した、続きを読みたくなる一文（70字まで。なくてもよい）
+concerns: [first] # first／shy／senior／skin／matting／style／large／cat（data/vocab.ts）
+qualifications: [JKC公認トリマー C級] # コンテストの成績は書かない
+startedYear: 2015 # トリマーの仕事を始めた年
+venues:
+  - slug: sample-salon # content/salon/ のファイル
+    role: 所属トリマー # オーナー／店長／所属トリマー／フリーランス
+    days: 水・土 # 担当している曜日（毎日なら行ごと消す）
+compare:
+  feature: 仕事のしかたの特徴をひとことで（24字まで）
+  message: 飼い主へのメッセージ（60字まで）
+  why: トリマーになったきっかけ（60字まで）
+  belief: いちばん大切にしていること（60字まで）
+  approach: 嫌がる子・苦手な工程への向き合い方（80字まで）
+  animals: [小型犬] # 小型犬／中型犬／大型犬／猫／うさぎ・小動物
+  breeds: [トイプードル] # 得意な犬種・猫種（8つまで）
+  tone: その子のペースを待つ # その子のペースを待つ／手早く終えて負担を減らす／声をかけ続ける／その子に合わせて変える
+  report: お迎えのときに口頭で # お迎えのときに口頭で／写真つきのメモで／記録を一緒に見ながら／当日中にメッセージで
+  attend: お預かりのみ # そばで見ていられる／ガラス越しに見られる／お預かりのみ
+  styles: [1頭ずつ貸し切り] # 1頭ずつ貸し切り／同じ時間に2〜3頭／出張・訪問
+  tools: [シャンプーや道具を種類で書く] # 商品名は書かない（6つまで）
+  explanation: 仕上がりの決め方（60字まで）
+  firstVisit: # はじめての日の時間配分（小型犬のシャンプー・カットの目安）
+    hearingMin: 20
+    groomingMin: 120
+  pace: 通う間隔の考え方（60字まで）
+  homecare: true # 家でのお手入れを提案するか
+  worries: [dryer] # よく受ける心配ごと（data/vocab.ts の WORRIES。5つまで）
+  notFor: ほかを勧めることがあるケース（80字まで）
+  gender: 女性 # 載せないなら行ごと消す
+  price: # 小型犬の通常料金（税込）。割引や初回価格は書かない
+    shampoo: 5500
+    cut: 8800
+    note: どの犬種の額か、など
+interviewedAt: 2026-01-01
+publishedAt: 2026-01-15
+verifiedAt: 2026-01-10
+interviewer: 聞き手の名前
+listing: free # 有料の掲載プランなら paid（「掲載プラン利用」と表示される。並び順は変わらない）
+draft: true # 公開するときに false にする
+---
+
+## 1つ目の章の見出し（トリマーになるまで）
+
+<Q>トリマーになったきっかけを教えてください。</Q>
+
+答えを、本人の言葉のまま段落で書く。
+
+<Photo src="/images/interview/sample-name-salon.jpg" alt="写真に何が写っているか" caption="写真の説明" />
+
+## 2つ目の章の見出し（仕事のしかた）
+
+<Q>はじめて来た子には、何から始めるのですか。</Q>
+
+答え。
+
+<Q>途中で嫌がったら、どうするのでしょう。</Q>
+
+答え。
+
+## 3つ目の章の見出し（どんな人に来てほしいか）
+
+<Q>どんな人に来てほしいと考えていますか。</Q>
+
+答え。
+
+<Q>反対に、合わないかもしれないのはどんな人でしょう。</Q>
+
+答え。

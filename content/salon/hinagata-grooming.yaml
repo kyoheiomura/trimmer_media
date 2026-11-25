@@ -1,0 +1,29 @@
+slug: hinagata-grooming
+name: ひながたグルーミング
+nameKana: ひながたぐるーみんぐ
+kind: トリミングサロン
+address:
+  prefSlug: osaka
+  citySlug: osaka-kita
+  line: 中崎西2-3-4（架空）
+  building: ひながたビル 1階
+stations:
+  - line: Osaka Metro谷町線
+    name: 中崎町
+    walkMin: 3
+  - line: 阪急線
+    name: 大阪梅田
+    walkMin: 10
+hours:
+  - days: [月, 水, 木, 金]
+    open: "10:00"
+    close: "20:00"
+  - days: [土, 日, 祝]
+    open: "09:00"
+    close: "18:00"
+hoursNote: 火は休み。トリマーは指名で予約できる
+booking:
+  url: https://example.com/hinagata-grooming
+  line: https://example.com/hinagata-grooming-line
+features: [完全予約制, トリミング室が見える, ペットホテル, キャッシュレス対応]
+verifiedAt: 2026-11-10

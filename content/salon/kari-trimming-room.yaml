@@ -1,0 +1,26 @@
+slug: kari-trimming-room
+name: 仮トリミングルーム
+nameKana: かりとりみんぐるーむ
+kind: 動物病院併設
+address:
+  prefSlug: kanagawa
+  citySlug: yokohama-kohoku
+  line: 篠原北4-5-6（架空）
+  building: 仮どうぶつ病院 1階
+stations:
+  - line: 東急東横線
+    name: 菊名
+    walkMin: 6
+  - line: JR横浜線
+    name: 新横浜
+    walkMin: 14
+hours:
+  - days: [月, 火, 木, 金, 土]
+    open: "09:00"
+    close: "19:30"
+hoursNote: 水・日・祝は休み。シニアの子と持病のある子は午前の枠で受けている
+booking:
+  phone: 045-000-0000
+  url: https://example.com/kari-trimming-room
+features: [完全予約制, 動物病院と連携, 駐車場, 大型犬対応, 猫対応, 送迎]
+verifiedAt: 2026-10-27

@@ -1,0 +1,14 @@
+node_modules/
+.next/
+out/
+.vercel/
+*.tsbuildinfo
+next-env.d.ts
+.env*.local
+.DS_Store
+reports/lighthouse/*.html
+
+reports/
+artifacts/stickers/*.log
+artifacts/photos/
+*.log
